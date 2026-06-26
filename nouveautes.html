@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dernières nouveautés jeux Switch — Nintendo Switch 2</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --red:#E4000F; --red-dark:#B5000B; --white:#fff; --gray:#9CA3AF;
+      --dark:#1A1A2E; --dark-blue:#16213E; --black:#0F0F0F; --gold:#FFD700;
+      --neon-blue:#00B3FF; --radius:16px; --shadow:0 18px 48px rgba(0,0,0,.35);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family:'Inter', system-ui, sans-serif; background:var(--dark); color:var(--white); line-height:1.6; overflow-x:hidden; }
+    .container { max-width:1200px; margin:0 auto; padding:0 1.5rem; }
+    .tag { display:inline-block; background:var(--red); color:var(--white); font-size:.7rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase; padding:.25rem .75rem; border-radius:999px; }
+    .tag.blue { background:var(--neon-blue); color:var(--black); }
+    .tag.gold { background:var(--gold); color:var(--black); }
+    nav { position:fixed; inset:0 0 auto 0; z-index:100; padding:1rem 0; background:rgba(15,15,15,.88); backdrop-filter:blur(20px); border-bottom:1px solid rgba(255,255,255,.06); }
+    .nav-inner { display:flex; align-items:center; justify-content:space-between; gap:1rem; }
+    .nav-logo { font-size:1rem; font-weight:900; letter-spacing:.05em; text-decoration:none; color:var(--white); }
+    .nav-logo span { color:var(--red); }
+    .nav-links { display:flex; gap:2rem; list-style:none; }
+    .nav-links a { color:var(--gray); text-decoration:none; font-size:.85rem; font-weight:600; transition:color .2s; }
+    .nav-links a:hover, .nav-links a.active { color:var(--white); }
+    .menu-toggle { display:none; width:44px; height:44px; border:1px solid rgba(255,255,255,.14); border-radius:12px; background:rgba(255,255,255,.06); color:var(--white); cursor:pointer; align-items:center; justify-content:center; flex-direction:column; gap:5px; }
+    .menu-toggle span { width:20px; height:2px; border-radius:999px; background:currentColor; transition:transform .2s, opacity .2s; }
+    .menu-toggle[aria-expanded="true"] span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+    .menu-toggle[aria-expanded="true"] span:nth-child(2) { opacity:0; }
+    .menu-toggle[aria-expanded="true"] span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+    .mobile-menu { display:none; border-top:1px solid rgba(255,255,255,.06); background:rgba(15,15,15,.96); }
+    .mobile-menu.open { display:block; }
+    .mobile-menu ul { list-style:none; padding:.75rem 0 1rem; }
+    .mobile-menu a { display:block; color:var(--white); text-decoration:none; font-weight:700; padding:.85rem 1.5rem; border-radius:12px; }
+    .mobile-menu a:hover { background:rgba(228,0,15,.14); }
+    .hero { min-height:62vh; padding:8rem 0 4rem; background:radial-gradient(ellipse at 70% 20%, rgba(228,0,15,.22), transparent 45%), radial-gradient(ellipse at 10% 80%, rgba(0,179,255,.13), transparent 45%), linear-gradient(135deg, var(--black), var(--dark-blue)); }
+    .hero h1 { font-size:clamp(2.5rem, 6vw, 5rem); font-weight:900; line-height:1; letter-spacing:-.04em; max-width:850px; margin:.8rem 0 1.25rem; }
+    .hero p { color:var(--gray); max-width:720px; font-size:1.1rem; }
+    .hero-actions { display:flex; gap:1rem; flex-wrap:wrap; margin-top:2rem; }
+    .btn { display:inline-flex; align-items:center; gap:.5rem; padding:.85rem 1.5rem; border-radius:999px; font-weight:800; text-decoration:none; transition:transform .2s, box-shadow .2s; }
+    .btn:hover { transform:translateY(-2px); }
+    .btn-primary { background:var(--red); color:var(--white); box-shadow:0 8px 28px rgba(228,0,15,.35); }
+    .btn-ghost { color:var(--white); background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.12); }
+    section { padding:4.5rem 0; }
+    .section-header { text-align:center; margin-bottom:2.5rem; }
+    .section-header h2 { font-size:clamp(1.8rem, 4vw, 2.8rem); font-weight:900; letter-spacing:-.03em; margin:.5rem 0 1rem; }
+    .section-header p { max-width:650px; margin:0 auto; color:var(--gray); }
+    .cards { display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:1.25rem; }
+    .card { background:rgba(22,33,62,.9); border:1px solid rgba(255,255,255,.07); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); transition:transform .25s, border-color .25s; }
+    .card:hover { transform:translateY(-6px); border-color:rgba(228,0,15,.35); }
+    .cover { min-height:128px; display:flex; align-items:center; justify-content:center; font-size:3.5rem; background:linear-gradient(135deg, rgba(228,0,15,.7), rgba(0,179,255,.45)); }
+    .body { padding:1.35rem; }
+    .meta { display:flex; align-items:center; justify-content:space-between; gap:.75rem; flex-wrap:wrap; margin-bottom:.75rem; }
+    .card h3 { font-size:1.1rem; line-height:1.25; margin-bottom:.45rem; }
+    .card p { color:var(--gray); font-size:.92rem; }
+    .rank-list { display:grid; gap:.9rem; max-width:900px; margin:0 auto; }
+    .rank-item { display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:1rem; padding:1rem 1.2rem; border:1px solid rgba(255,255,255,.07); border-radius:14px; background:rgba(255,255,255,.035); }
+    .rank { width:36px; height:36px; border-radius:50%; display:grid; place-items:center; font-weight:900; background:var(--red); }
+    .rank-item strong { display:block; }
+    .rank-item span { color:var(--gray); font-size:.85rem; }
+    .classic { background:linear-gradient(135deg, rgba(15,15,15,.95), rgba(26,10,10,.95)); border-top:1px solid rgba(255,255,255,.06); }
+    footer { background:var(--black); border-top:1px solid rgba(255,255,255,.06); padding:2.5rem 0; text-align:center; color:var(--gray); font-size:.85rem; }
+    footer a { color:var(--red); text-decoration:none; }
+    @media (max-width:768px) { .nav-links { display:none; } .menu-toggle { display:inline-flex; } .hero { padding-top:7rem; } .rank-item { grid-template-columns:auto 1fr; } .rank-item .tag { grid-column:2; width:max-content; } }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="container nav-inner">
+      <a class="nav-logo" href="index.html"><span>Nintendo</span> Switch 2</a>
+      <ul class="nav-links">
+        <li><a href="index.html#comparaison">Comparaison</a></li>
+        <li><a href="index.html#specs">Specs</a></li>
+        <li><a href="index.html#jeux">Jeux</a></li>
+        <li><a href="index.html#online">Online</a></li>
+        <li><a class="active" href="nouveautes.html">Nouveautés</a></li>
+      </ul>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Ouvrir le menu"><span></span><span></span><span></span></button>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+      <div class="container">
+        <ul>
+          <li><a href="index.html#comparaison">Comparaison</a></li>
+          <li><a href="index.html#specs">Specs</a></li>
+          <li><a href="index.html#jeux">Jeux</a></li>
+          <li><a href="index.html#online">Online</a></li>
+          <li><a href="nouveautes.html">Dernières nouveautés</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container">
+      <span class="tag gold">Juin 2026</span>
+      <h1>Les dernières nouveautés des jeux Nintendo Switch</h1>
+      <p>Un panorama rapide des jeux qui font parler d'eux en juin 2026 : meilleures ventes eShop, titres Switch 2 les mieux notés, sorties récentes et classiques à garder dans sa collection.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#tops-eshop">Voir le top eShop</a>
+        <a class="btn btn-ghost" href="index.html">← Retour à l'accueil</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="tops-eshop">
+      <div class="container">
+        <div class="section-header">
+          <span class="tag">Top ventes eShop</span>
+          <h2>Les plus populaires du moment</h2>
+          <p>Les jeux qui dominent les envies des joueurs Switch et Switch 2 en juin 2026.</p>
+        </div>
+        <div class="rank-list">
+          <div class="rank-item"><div class="rank">1</div><div><strong>Tomodachi Life: Living the Dream</strong><span>Simulation sociale ultra-fun et très accessible.</span></div><span class="tag gold">Tendance</span></div>
+          <div class="rank-item"><div class="rank">2</div><div><strong>Pokémon Legends: Z-A</strong><span>Le Pokémon récent qui cartonne auprès des fans.</span></div><span class="tag">RPG</span></div>
+          <div class="rank-item"><div class="rank">3</div><div><strong>Super Smash Bros. Ultimate</strong><span>Un indispensable multijoueur toujours au sommet.</span></div><span class="tag blue">Combat</span></div>
+          <div class="rank-item"><div class="rank">4</div><div><strong>Mario Kart 8 Deluxe</strong><span>Toujours roi des courses conviviales.</span></div><span class="tag">Course</span></div>
+          <div class="rank-item"><div class="rank">5</div><div><strong>Animal Crossing: New Horizons</strong><span>La vie insulaire reste une valeur sûre.</span></div><span class="tag gold">Détente</span></div>
+          <div class="rank-item"><div class="rank">6</div><div><strong>Super Mario Party Jamboree</strong><span>Le choix parfait pour les soirées à plusieurs.</span></div><span class="tag">Party game</span></div>
+          <div class="rank-item"><div class="rank">7</div><div><strong>Minecraft</strong><span>Création, survie et coopération sans limite.</span></div><span class="tag blue">Créatif</span></div>
+          <div class="rank-item"><div class="rank">8</div><div><strong>Super Mario Bros. Wonder</strong><span>Plateforme colorée, inventive et familiale.</span></div><span class="tag">Plateforme</span></div>
+          <div class="rank-item"><div class="rank">9</div><div><strong>Nintendo Switch Sports</strong><span>Du sport accessible pour jouer en famille.</span></div><span class="tag gold">Famille</span></div>
+          <div class="rank-item"><div class="rank">10</div><div><strong>The Legend of Zelda: Tears of the Kingdom</strong><span>Une aventure open world immense, à découvrir ou redécouvrir.</span></div><span class="tag">Aventure</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="critiques" class="classic">
+      <div class="container">
+        <div class="section-header">
+          <span class="tag blue">Notes critiques</span>
+          <h2>Les nouveautés les mieux accueillies</h2>
+          <p>Une sélection des titres récents qui se distinguent par leurs notes et leur bouche-à-oreille.</p>
+        </div>
+        <div class="cards">
+          <article class="card"><div class="cover">🚀</div><div class="body"><div class="meta"><span class="tag gold">9.40</span><span class="tag">Switch 2</span></div><h3>Sektori</h3><p>Twin-stick shooter nerveux, lisible et extrêmement efficace pour les sessions courtes.</p></div></article>
+          <article class="card"><div class="cover">🦇</div><div class="body"><div class="meta"><span class="tag gold">9.40</span><span class="tag">Switch 2</span></div><h3>Mina the Hollower: Nintendo Switch 2 Edition</h3><p>Action-aventure rétro modernisée, avec une édition optimisée pour la nouvelle console.</p></div></article>
+          <article class="card"><div class="cover">🌙</div><div class="body"><div class="meta"><span class="tag gold">9.33</span><span class="tag">Switch 2</span></div><h3>Planet of Lana II</h3><p>Une aventure cinématique poétique portée par une direction artistique très soignée.</p></div></article>
+          <article class="card"><div class="cover">🌱</div><div class="body"><div class="meta"><span class="tag blue">Très bon</span><span class="tag">Switch 2</span></div><h3>Pokémon Pokopia</h3><p>Une proposition Pokémon plus cosy, idéale pour les fans d'exploration tranquille.</p></div></article>
+          <article class="card"><div class="cover">🧟</div><div class="body"><div class="meta"><span class="tag blue">Attendu</span><span class="tag">Switch 2</span></div><h3>Resident Evil Requiem</h3><p>Survival horror ambitieux pour profiter de la puissance supplémentaire de la Switch 2.</p></div></article>
+          <article class="card"><div class="cover">🎸</div><div class="body"><div class="meta"><span class="tag gold">8.63</span><span class="tag">Switch</span></div><h3>Quartet</h3><p>Une valeur sûre de la Switch classique, solide et bien notée.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="classiques">
+      <div class="container">
+        <div class="section-header">
+          <span class="tag">Classiques</span>
+          <h2>Les intemporels à ne pas manquer</h2>
+          <p>Si tu démarres une collection Switch, ces jeux restent des incontournables même face aux nouveautés.</p>
+        </div>
+        <div class="cards">
+          <article class="card"><div class="cover">🏎️</div><div class="body"><h3>Mario Kart 8 Deluxe</h3><p>Le jeu de course familial par excellence, parfait en local comme en ligne.</p></div></article>
+          <article class="card"><div class="cover">🗡️</div><div class="body"><h3>Zelda: Tears of the Kingdom</h3><p>Une aventure immense, créative et toujours spectaculaire.</p></div></article>
+          <article class="card"><div class="cover">🍄</div><div class="body"><h3>Super Mario Odyssey</h3><p>Un platformer 3D généreux, varié et très accessible.</p></div></article>
+          <article class="card"><div class="cover">🏝️</div><div class="body"><h3>Animal Crossing: New Horizons</h3><p>Le jeu détente idéal pour construire son île à son rythme.</p></div></article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p><strong>Nintendo Switch 2</strong> — page nouveautés créée pour suivre les jeux marquants de juin 2026.</p>
+      <p><a href="index.html">Retour à l'accueil</a></p>
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.querySelector('.menu-toggle');
+    const mobileMenu = document.querySelector('#mobile-menu');
+    menuToggle?.addEventListener('click', () => {
+      const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
+      menuToggle.setAttribute('aria-expanded', String(!isOpen));
+      menuToggle.setAttribute('aria-label', isOpen ? 'Ouvrir le menu' : 'Fermer le menu');
+      mobileMenu.classList.toggle('open', !isOpen);
+    });
+    mobileMenu?.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      menuToggle.setAttribute('aria-expanded', 'false');
+      menuToggle.setAttribute('aria-label', 'Ouvrir le menu');
+      mobileMenu.classList.remove('open');
+    }));
+  </script>
+</body>
+</html>
