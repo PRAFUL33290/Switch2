@@ -426,13 +426,23 @@
     }
 
     .game-cover {
-      height: 140px;
+      height: 200px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 4rem;
       position: relative;
       overflow: hidden;
+    }
+    .game-cover img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      transition: opacity 0.3s;
     }
 
     .game-body { padding: 1.25rem; }
@@ -1066,8 +1076,9 @@
       <div class="games-grid fade-up stagger">
 
         <div class="game-card" style="--i:0">
-          <div class="game-cover" style="background: linear-gradient(135deg, #1a1a2e, #e4000f);">
+          <div class="game-cover" style="background: linear-gradient(135deg, #0d0d1a, #c00010);">
             🏎️
+            <img src="https://assets.nintendo.com/image/upload/ar_16:9,b_auto:border,c_lpad/b_white/f_auto/q_auto/dpr_auto/c_scale,w_600/ncom/software/switch-2/70010000085181" alt="Mario Kart World cover" loading="lazy" onerror="this.style.display='none'" />
           </div>
           <div class="game-body">
             <div class="game-meta" style="margin-bottom:0.5rem;">
@@ -1083,8 +1094,9 @@
         </div>
 
         <div class="game-card" style="--i:1">
-          <div class="game-cover" style="background: linear-gradient(135deg, #0d4f2e, #1a8a50);">
+          <div class="game-cover" style="background: linear-gradient(135deg, #1a2e00, #4a7a10);">
             🦍
+            <img src="https://assets.nintendo.com/image/upload/ar_16:9,b_auto:border,c_lpad/b_white/f_auto/q_auto/dpr_auto/c_scale,w_600/ncom/software/switch-2/70010000085550" alt="Donkey Kong Bananza cover" loading="lazy" onerror="this.style.display='none'" />
           </div>
           <div class="game-body">
             <div class="game-meta" style="margin-bottom:0.5rem;">
@@ -1100,8 +1112,9 @@
         </div>
 
         <div class="game-card" style="--i:2">
-          <div class="game-cover" style="background: linear-gradient(135deg, #1a0f2e, #4a1a7a);">
+          <div class="game-cover" style="background: linear-gradient(135deg, #050a15, #0a1a40);">
             🤖
+            <img src="https://assets.nintendo.com/image/upload/ar_16:9,b_auto:border,c_lpad/b_white/f_auto/q_auto/dpr_auto/c_scale,w_600/ncom/software/switch-2/70010000082397" alt="Metroid Prime 4: Beyond cover" loading="lazy" onerror="this.style.display='none'" />
           </div>
           <div class="game-body">
             <div class="game-meta" style="margin-bottom:0.5rem;">
@@ -1117,8 +1130,9 @@
         </div>
 
         <div class="game-card" style="--i:3">
-          <div class="game-cover" style="background: linear-gradient(135deg, #0f2a0f, #1a5c1a);">
-            🎮
+          <div class="game-cover" style="background: linear-gradient(135deg, #0a1a05, #1a4a10);">
+            🗡️
+            <img src="https://assets.nintendo.com/image/upload/ar_16:9,b_auto:border,c_lpad/b_white/f_auto/q_auto/dpr_auto/c_scale,w_600/ncom/software/switch/70010000063714" alt="The Legend of Zelda: Tears of the Kingdom cover" loading="lazy" onerror="this.style.display='none'" />
           </div>
           <div class="game-body">
             <div class="game-meta" style="margin-bottom:0.5rem;">
@@ -1134,8 +1148,9 @@
         </div>
 
         <div class="game-card" style="--i:4">
-          <div class="game-cover" style="background: linear-gradient(135deg, #2a1a0f, #e4a010);">
-            🐉
+          <div class="game-cover" style="background: linear-gradient(135deg, #1a0a2e, #6a00cc);">
+            ⚡
+            <img src="https://assets.nintendo.com/image/upload/ar_16:9,b_auto:border,c_lpad/b_white/f_auto/q_auto/dpr_auto/c_scale,w_600/ncom/software/switch-2/70010000082534" alt="Pokémon Legends: Z-A cover" loading="lazy" onerror="this.style.display='none'" />
           </div>
           <div class="game-body">
             <div class="game-meta" style="margin-bottom:0.5rem;">
@@ -1151,8 +1166,9 @@
         </div>
 
         <div class="game-card" style="--i:5">
-          <div class="game-cover" style="background: linear-gradient(135deg, #0a1a2a, #1a4a8a);">
+          <div class="game-cover" style="background: linear-gradient(135deg, #0a0a1a, #001a4a);">
             🏀
+            <img src="https://assets.nintendo.com/image/upload/ar_16:9,b_auto:border,c_lpad/b_white/f_auto/q_auto/dpr_auto/c_scale,w_600/ncom/software/switch-2/70010000085793" alt="Drag × Drive cover" loading="lazy" onerror="this.style.display='none'" />
           </div>
           <div class="game-body">
             <div class="game-meta" style="margin-bottom:0.5rem;">
